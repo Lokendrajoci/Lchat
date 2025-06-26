@@ -1,9 +1,12 @@
+"use client";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
+import { useState } from "react";
+import  AddFriendForm  from "@/app/components/addFriend";
 
 type Contact = {
   id: number;
@@ -26,8 +29,9 @@ export default function ContactList({
   selectedContact,
   setSelectedContact,
 }: ContactListProps) {
+  const [addFriend, setaddFriend] = useState(false);
   const handleAddFriends = () => {
-    console.log("Add friends clicked");
+    setaddFriend((pre) => !pre);
   };
 
   return (
@@ -70,6 +74,8 @@ export default function ContactList({
           <Badge variant="secondary" className="text-xs">
             6
           </Badge>
+
+          {addFriend && <AddFriendForm setaddFriend={setaddFriend} />}
         </div>
       </div>
       {/* Contacts List */}
